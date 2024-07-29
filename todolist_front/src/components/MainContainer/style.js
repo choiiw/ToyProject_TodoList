@@ -43,6 +43,7 @@ export const container = css`
         flex-grow: 1;
         flex-direction: row;
         justify-content: center;
+        border: 1px solid #dbdbdb;     
         box-sizing: border-box;
         display: flex;
     }
@@ -52,7 +53,7 @@ export const container = css`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        border: 1px solid #000000;       
+        border: 1px solid #dbdbdb;       
         margin-right: 20px;
         width: 500px;
         height: 650px;
@@ -63,7 +64,7 @@ export const container = css`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid #dbdbdb;
         width: 499px;
         height: 100px;
 

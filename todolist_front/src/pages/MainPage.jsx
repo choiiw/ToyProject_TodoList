@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import AllListPage from './AllListPage';
 
 function MainPage(props) {
 
@@ -15,7 +16,8 @@ function MainPage(props) {
                 </p>
 
                 <div class="list-container">
-                    <div class="list">
+                    <AllListPage />
+                    {/* <div class="list">
                         <div class="list-box">
                             <div>
                                 <h2>전체 List</h2>
@@ -26,12 +28,12 @@ function MainPage(props) {
                                 <button class="bb">삭제</button>
                                 <button class="bb">완료</button>
                             </div>
-                        </div>
-                        <div class="chk-box">
-                            <input type="checkbox" class="chk"/>
+                            </div>
+                            <div class="chk-box">
+                                <input type="checkbox" class="chk"/>
                             <div></div>
                         </div> 
-                    </div>
+                    </div> */}
                     <div class="list">
                         <div class="list-box">
                         <div>
