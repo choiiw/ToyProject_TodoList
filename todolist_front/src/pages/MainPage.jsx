@@ -2,6 +2,8 @@
 
 import React from 'react';
 import AllListPage from './AllListPage';
+import CompletePage from './CompletePage';
+import IncompletePage from './IncompletePage';
 
 function MainPage(props) {
 
@@ -16,9 +18,9 @@ function MainPage(props) {
                 </p>
 
                 <div class="list-container">
+                    <div class="list">
                     <AllListPage />
-                    {/* <div class="list">
-                        <div class="list-box">
+                        {/* <div class="list-box">
                             <div>
                                 <h2>전체 List</h2>
                             </div>
@@ -32,10 +34,11 @@ function MainPage(props) {
                             <div class="chk-box">
                                 <input type="checkbox" class="chk"/>
                             <div></div>
-                        </div> 
-                    </div> */}
+                        </div>  */}
+                    </div>
                     <div class="list">
-                        <div class="list-box">
+                        <IncompletePage />
+                        {/* <div class="list-box">
                         <div>
                                 <h2>미완료 List</h2>
                             </div>
@@ -48,10 +51,11 @@ function MainPage(props) {
                         <div class="chk-box">
                             <input type="checkbox" class="chk"/>
                             <div></div>
-                        </div> 
+                        </div>  */}
                     </div>
                     <div class="list">
-                    <div class="list-box">
+                        <CompletePage />
+                    {/* <div class="list-box">
                     <div>
                                 <h2>완료 List</h2>
                             </div>
@@ -62,7 +66,7 @@ function MainPage(props) {
                     <div class="chk-box">
                             <input type="checkbox" class="chk"/>
                             <div></div>
-                        </div> 
+                        </div>  */}
                     </div> 
                     
                 </div>

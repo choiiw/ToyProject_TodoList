@@ -34,7 +34,7 @@ export const container = css`
     }
 
     .login-bt {
-        margin-right: 200px;
+        margin-right:75px;
     }
 
     .list-container {
@@ -43,9 +43,8 @@ export const container = css`
         flex-grow: 1;
         flex-direction: row;
         justify-content: center;
-        border: 1px solid #dbdbdb;     
         box-sizing: border-box;
-        display: flex;
+
     }
 
     .list {
@@ -98,5 +97,12 @@ export const container = css`
     
     h2{
         margin-left: 30px ;
+    }
+    table th:nth-child(2){
+        width: 290px;
+    }
+
+    table th:nth-child(3){
+        width: 70px;
     }
 `;

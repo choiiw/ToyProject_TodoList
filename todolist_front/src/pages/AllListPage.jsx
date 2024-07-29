@@ -1,42 +1,69 @@
-import React from 'react';
+
+
+import axios from 'axios';
+import React, { useState } from 'react';
 
 
 
 function AllListPage(props) {
+    
+    const [ todoList, setTodoList ] = useState({
+        listId: "",
+        check: "",
+        input: "",
+        registerDate: "",
+    });
+
+
+    const [ todoListOption, setTodoListOption ] = useState([]);
+
+    const requestTodoList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/v1/todolist");
+            setTodoListOption(response.data);
+        }catch(e) {
+            console.error(e);
+        };
+    }
+
 
 
     return (
         
-        <div class="list-container">
-            <div class="list-box">
+        <div >
                 <div>
                     <h2>전체 List</h2>
                 </div>
-                <div class="button-box">
+                <div >
                     <table>
                         <thead>
-                            <tr>
-                                <th></th>
-                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                <th>날짜&nbsp;&nbsp;&nbsp;</th>
+                            <tr >
+                                <th>선택</th>
+                                <th>내용</th>
+                                <th>날짜</th>
                                 <th>수정</th>
                                 <th>삭제</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" class="chk"/></td>
-                                <td></td>
-                                <td></td>
-                                <td><button>수정</button></td>
-                                <td><button>삭제</button></td>
-                            </tr>
+                           {
+                                todoListOption.map(todo =>
+                                    <tr key={todo.listId}>
+                                        <td><input type="checkbox"/></td>
+                                        <td>{todo.input}</td>
+                                        <td>{todo.registerDate}</td>
+                                        <td><button>수정</button></td>
+                                        <td><button>삭제</button></td>
+                                    </tr>
+                     
+                                )    
+                             }
                         </tbody>    
                     </table>
-                </div>
-                
-                </div> 
-        </ div>
+                </div>     
+        </div>
+
+        
     );
 }
 
