@@ -28,7 +28,7 @@ public class BasicController {
         return ResponseEntity.ok().body(todolistService.getInputList(respDto));
     }
 
-    @DeleteMapping("/todolist/delete") //
+    @DeleteMapping("/todolist/delete") // 삭제
     public ResponseEntity<?> deleteApi(int listId) {
         return ResponseEntity.ok().body(todolistService.deleteTodoList(listId));
     }
