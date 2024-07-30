@@ -105,4 +105,26 @@ export const container = css`
     table th:nth-child(3){
         width: 70px;
     }
+    .sc-box {
+        
+        display: flex;
+
+    }
+
+    .sc {
+        
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        background-color: #ffffff;
+       
+        border: none;
+
+        &:hover {
+            background-color: #fafafa;
+        }
+        &:active{
+            background-color: #dbdbdb;
+        }
+    }
 `;
