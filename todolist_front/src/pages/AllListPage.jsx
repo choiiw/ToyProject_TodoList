@@ -42,21 +42,6 @@ function AllListPage(props) {
 
 
 
-
-
-    // const requestTodoList = async () => {
-    //     try {
-    //         const response = await axios.get("http://localhost:8080/api/v1/todolist");
-    //         setTodoListOption(response.data);
-    //     }catch(e) {
-    //         console.error(e);
-    //     };
-    // }
-    
-    // const handleSearchClick = () => {
-    //     requestTodoList();
-    // }
-
     return (
         
         <div >
