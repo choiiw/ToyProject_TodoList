@@ -7,12 +7,12 @@ import React, { useState } from 'react';
 
 function AllListPage(props) {
     
-    const [ todoList, setTodoList ] = useState({
-        listId: "",
-        check: "",
-        input: "",
-        registerDate: "",
-    });
+    // const [ todoList, setTodoList ] = useState({
+    //     listId: "",
+    //     check: "",
+    //     input: "",
+    //     registerDate: "",
+    // });
 
 
     const [ todoListOption, setTodoListOption ] = useState([]);
@@ -25,14 +25,17 @@ function AllListPage(props) {
             console.error(e);
         };
     }
-
-
+    
+    const handleSearchClick = () => {
+        requestTodoList();
+    }
 
     return (
         
         <div >
-                <div>
+                <div class="sc-box">
                     <h2>전체 List</h2>
+                    <button onClick={handleSearchClick} class="sc">전체 조회</button>
                 </div>
                 <div >
                     <table>
