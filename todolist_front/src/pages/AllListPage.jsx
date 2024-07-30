@@ -39,7 +39,6 @@ function AllListPage(props) {
                  };
     }
 
-
     return (
         
         <div >
