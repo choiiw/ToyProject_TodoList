@@ -1,9 +1,11 @@
 package com.toyproject.todolist.controller;
 
+import com.toyproject.todolist.dto.ReqGetInputDto;
 import com.toyproject.todolist.dto.ReqRegisterInputDto;
 import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
-import com.toyproject.todolist.dto.RespGetInputDto;
-import com.toyproject.todolist.service.TodolistService;
+//import com.toyproject.todolist.dto.RespGetInputDto;
+//import com.toyproject.todolist.service.TodolistService;
+import com.toyproject.todolist.service.TodolistServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +18,16 @@ import org.springframework.web.bind.annotation.*;
 public class BasicController {
 
     @Autowired
-    private TodolistService todolistService;
+    private TodolistServiceImpl todolistService;
 
     @PostMapping("/todolist/post")
     public ResponseEntity<?> registerApi(@RequestBody ReqRegisterInputDto reqDto) {
         return ResponseEntity.ok().body(todolistService.registerInput(reqDto));
     }
 
-    @GetMapping("/todolist/print") // 조회
-    public ResponseEntity<?> getApi(RespGetInputDto respDto) {
-        return ResponseEntity.ok().body(todolistService.getInputList(respDto));
+    @GetMapping("/todolist") // 조회
+    public ResponseEntity<?> getApi(ReqGetInputDto reqDto) {
+        return ResponseEntity.ok().body(todolistService.getInputList(reqDto));
     }
 
     @DeleteMapping("/todolist/delete") //

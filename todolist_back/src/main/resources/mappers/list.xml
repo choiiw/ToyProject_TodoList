@@ -44,8 +44,6 @@
             parameterType="com.toyproject.todolist.entity.TodoList"
             resultType="com.toyproject.todolist.entity.TodoList">
         select
-            listId,
-            check,
             input,
             registerDate
         from

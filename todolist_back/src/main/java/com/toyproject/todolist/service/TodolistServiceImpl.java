@@ -11,7 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TodolistServiceImpl implements TodolistService {
+public class TodolistServiceImpl  {
+
+    @Autowired
+    private InputMapper inputMapper;
+
 
     public User registerUser(ReqRegisterUserDto userDto) {
         User user = User.builder()
@@ -22,8 +26,6 @@ public class TodolistServiceImpl implements TodolistService {
         return user;
     }
 
-    @Autowired
-    private InputMapper inputMapper;
 
     public int registerInput(ReqRegisterInputDto reqDto) {
         TodoList todoList = TodoList.builder()
@@ -37,15 +39,16 @@ public class TodolistServiceImpl implements TodolistService {
     }
 
 
+
     //조회
-    public List<RespGetInputDto> getInputList(RespGetInputDto respDto) {
+    public List<RespGetInputDto> getInputList(ReqGetInputDto reqDto) {
         List<RespGetInputDto> respDtos = new ArrayList<>();
 
         TodoList todoList = TodoList.builder()
-                .listId(respDto.getListId())
-                .check(respDto.getCheck())
-                .input(respDto.getInput())
-                .registerDate(respDto.getRegisterDate())
+                .listId(reqDto.getListId())
+                .check(reqDto.getCheck())
+                .input(reqDto.getInput())
+                .registerDate(reqDto.getRegisterDate())
                 .build();
 
        List<TodoList> todoLists = inputMapper.findByTodoListAll(todoList);
