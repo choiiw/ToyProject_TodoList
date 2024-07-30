@@ -1,41 +1,68 @@
 
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
 function AllListPage(props) {
     
-    // const [ todoList, setTodoList ] = useState({
-    //     listId: "",
-    //     check: "",
-    //     input: "",
-    //     registerDate: "",
-    // });
+    const [ todoList, setTodoList ] = useState({
+        listId: "",
+        check: "",
+        input: "",
+        registerDate: "",
+    });
 
 
     const [ todoListOption, setTodoListOption ] = useState([]);
 
-    const requestTodoList = async () => {
-        try {
-            const response = await axios.get("http://localhost:8080/api/v1/todolist");
+    useEffect(() => {
+        const getLists = async () => {
+            const response = await axios.get("http://localhost:8080/api/v1/todolist/print");
             setTodoListOption(response.data);
-        }catch(e) {
-            console.error(e);
-        };
+            setTodoList(list => ({
+                ...list,
+                listId: response.data[0].listId
+                })
+            );
+        }
+        getLists();
+    }, []);
+
+    const handleSubmitClick = async () => {
+        try {
+                     const response = await axios.get("http://localhost:8080/api/v1/todolist/print", todoList);
+                     setTodoListOption(response.data);
+                 }catch(e) {
+                     console.error(e);
+                 };
     }
+
+
+
+
+
+
+    // const requestTodoList = async () => {
+    //     try {
+    //         const response = await axios.get("http://localhost:8080/api/v1/todolist");
+    //         setTodoListOption(response.data);
+    //     }catch(e) {
+    //         console.error(e);
+    //     };
+    // }
     
-    const handleSearchClick = () => {
-        requestTodoList();
-    }
+    // const handleSearchClick = () => {
+    //     requestTodoList();
+    // }
 
     return (
         
         <div >
                 <div class="sc-box">
                     <h2>전체 List</h2>
-                    <button onClick={handleSearchClick} class="sc">전체 조회</button>
+                    <button onClick={handleSubmitClick} class="sc">전체 조회</button>
                 </div>
                 <div >
                     <table>

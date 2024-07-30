@@ -2,6 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function IncompletePage(props) {
+    const [ todoList, setTodoList ] = useState({
+        listId: "",
+        check: "",
+        input: "",
+        registerDate: "",
+    });
+
     const [inCompleteList, setIncompleteList] = useState([]);
 
     useEffect(() => {
@@ -9,9 +16,15 @@ function IncompletePage(props) {
             const data = await requestGetList();
             if (data && Array.isArray(data)) {
                 setIncompleteList(data.map(item => ({ ...item, checked: false })));
+                setTodoList(list => ({
+                    ...list,
+                    listId: listData.data[0].listId
+                }));
+
             } else {
                 setIncompleteList([]);
            }
+    
         };
 
         fetchData();
@@ -19,7 +32,7 @@ function IncompletePage(props) {
 
     const requestGetList = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/todolist'); 
+            const response = await axios.get('http://localhost:8080/api/v1/todolist/print2', todoList); 
             return response.data;
         } catch (e) {
             console.error(e);
@@ -35,7 +48,6 @@ function IncompletePage(props) {
         );
     };
 
-    // Filter out checked items
     const uncheckedItems = inCompleteList.filter(todo => !todo.checked);
 
     return (

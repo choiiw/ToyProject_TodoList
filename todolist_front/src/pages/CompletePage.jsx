@@ -3,6 +3,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function CompletePage(props) {
+    const [ todoList, setTodoList ] = useState({
+        listId: "",
+        check: "",
+        input: "",
+        registerDate: "",
+    });
+
     const [completeList, setCompleteList] = useState([]);
 
     useEffect(() => {
@@ -10,6 +17,10 @@ function CompletePage(props) {
             const data = await requestGetList();
             if (data && Array.isArray(data)) {
                 setCompleteList(data.map(item => ({ ...item, checked: true })));
+                setTodoList(list => ({
+                    ...list,
+                    listId: data.data[0].listId
+                }));
             } else {
                 setCompleteList([]);
            }
@@ -20,7 +31,7 @@ function CompletePage(props) {
 
     const requestGetList = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/todolist'); 
+            const response = await axios.get('http://localhost:8080/api/v1/todolist/print3', todoList); 
             return response.data;
         } catch (e) {
             console.error(e);
