@@ -1,15 +1,25 @@
 package com.toyproject.todolist.dto;
 
+import com.toyproject.todolist.entity.Todo;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 
-@Builder
+
 @Data
 public class ReqUpdateTodoListDto {
-    private int listId;
-    private int check;
-    private String input;
-    private Date registerDate;
+    private int todoId;
+    private int checkStatus;
+    private String content;
+    private String registerDate;
+
+    public Todo toEntity() {
+        return Todo.builder()
+                .todoId(todoId)
+                .checkStatus(checkStatus)
+                .content(content)
+                .registerDate(registerDate)
+                .build();
+    }
 }

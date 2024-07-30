@@ -5,11 +5,11 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Builder
+
 @Data
 public class ReqPostInputDto {
     private int listId;
     private int check;
     private String input;
-    private Date registerDate;
+    private String registerDate;
 }
