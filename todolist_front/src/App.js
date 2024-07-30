@@ -1,10 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Global } from '@emotion/react';
+import { Route, Routes } from 'react-router-dom';
+import MainContainer from './components/MainContainer/MainContainer';
+import MainLayout from './components/MainLayout/MainLayout';
+import { reset } from './styles/global';
+import MainPage from './pages/MainPage';
+import CompletePage from './pages/CompletePage';
+import IncompletePage from './pages/IncompletePage';
+import AllListPage from './pages/AllListPage';
 
 function App() {
   return (
     <>
-      test 버그수정1
+      <Global css={reset}/>
+          <MainLayout>
+            <MainContainer>
+                <Routes>
+                  <Route path="/todolist" element={<MainPage />} />
+                  <Route path="/todolist" element={<AllListPage />} />
+                  <Route path="/todolist" element={<CompletePage />} />
+                  <Route path="/todolist" element={<IncompletePage />} />
+                </Routes>
+            </MainContainer>
+
+          </MainLayout>
     </>
   );
 }
