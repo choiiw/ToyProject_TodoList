@@ -11,41 +11,40 @@ import React, { useState } from 'react';
 function App() {
   // 조회
 
-  const [ todoList, setTodoList ] = useState({
-    listId: "",
-    check: "",
-    input: "",
-    registerDate: "",
-});
+    const [ todo, setTodo ] = useState({
+        todoId: "",
+        checkStatus: "",
+        content: "",
+        registerDate: "",
+    });
 
-const [ params, setParams ] = useState({
-  listId: "",
-  input: "",
-  registerDate: "",
-})
+    const [ params, setParams ] = useState({
+        registerDate: "",
+    })
 
-const [ todoListOption, setTodoListOption ] = useState([]);
+    const [ todoList, setTodoList ] = useState([]);
 
-const requestTodoList = async () => {
-  try{
-      const response = await axios.get("http://localhost:8080/api/v1/todolist", {params});
-      setTodoListOption(response.data);
-  }catch(e) {
-      console.error(e);
-  };
-}
+    const requestTodoList = async () => {
+        try{
+            const response = await axios.get("http://localhost:8080/api/v1/todolist", {params});
+            setTodoList(response.data);
+        }catch(e) {
+            console.error(e);
+        };
+    }
 
-const handleSearchClick = () => {
-        
-  requestTodoList();
+    const handleSearchClick = () => {
+            
+        requestTodoList();
 
-  setParams({
-    listId: "",
-    input: "",
-    registerDate: ""
-});
+        setParams({
+            todoId: "",
+            checkStatus: "",
+            content: "",
+            registerDate: "",
+        });
 
-}
+    }
 // useEffect(() => {
 //     const getLists = async () => {
 //         const response = await axios.get("http://localhost:8080/api/v1/todolist");
@@ -107,10 +106,10 @@ const handleSearchClick = () => {
                         </thead>
                         <tbody>
                            {
-                                todoListOption.map(todo =>
-                                    <tr key={todo.listId}>
-                                        <td><input type="checkbox"/></td>
-                                        <td>{todo.input}</td>
+                                todoList.map(todo =>
+                                    <tr key={todo.todoId}>
+                                        <td><input type="checkbox" checked={!!todo.checkStatus}/></td>
+                                        <td>{todo.content}</td>
                                         <td>{todo.registerDate}</td>
                                         <td><button>수정</button></td>
                                         <td><button>삭제</button></td>
@@ -141,16 +140,18 @@ const handleSearchClick = () => {
                 </thead>
                 <tbody>
                     
-                    <tr >
-                        <td><input type="checkbox"
-                        className="chk"
-                        class="chk"/>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td><button>수정</button></td>
-                        <td><button>삭제</button></td>
-                    </tr>
+                    {
+                        todoList.filter(todo => !todo.checkStatus).map(todo =>
+                            <tr key={todo.todoId}>
+                                <td><input type="checkbox" checked={!!todo.checkStatus}/></td>
+                                <td>{todo.content}</td>
+                                <td>{todo.registerDate}</td>
+                                <td><button>수정</button></td>
+                                <td><button>삭제</button></td>
+                            </tr>
+                
+                        )    
+                    }
 
                 </tbody>    
             </table>
@@ -175,17 +176,18 @@ const handleSearchClick = () => {
                         </thead>
                         <tbody>
                         
-                                <tr >
-                                    <td><input type="checkbox"
-                                    className="chk"
-                                    class="chk"/>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
+                        {
+                            todoList.filter(todo => !!todo.checkStatus).map(todo =>
+                                <tr key={todo.todoId}>
+                                    <td><input type="checkbox" checked={!!todo.checkStatus}/></td>
+                                    <td>{todo.content}</td>
+                                    <td>{todo.registerDate}</td>
                                     <td><button>수정</button></td>
                                     <td><button>삭제</button></td>
                                 </tr>
-
+                    
+                            )    
+                        }
                         </tbody>    
                     </table>
                 </div>

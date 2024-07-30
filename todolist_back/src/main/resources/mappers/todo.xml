@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.toyproject.todolist.repository.TodoMapper">
+
+    <insert id="save" parameterType="com.toyproject.todolist.entity.Todo">
+        insert into todolist_tb
+        values
+            (0, 0, #{content}, #{registerDate})
+    </insert>
+    <update id="update" parameterType="com.toyproject.todolist.entity.Todo">
+        update todolist_tb
+        set
+            checkStatus = #{checkStatus},
+            content = #{content},
+            registerDate = #{registerDate}
+        where
+            todoId = #{todoId}
+
+    </update>
+    <delete id="delete" parameterType="com.toyproject.todolist.entity.Todo">
+        delete
+        from
+            todolist_tb
+        where
+            todoId = #{todoId}
+
+    </delete>
+    <select id="findByTodoListAll"
+            parameterType="String"
+            resultType="com.toyproject.todolist.entity.Todo">
+
+        select
+            todoId,
+            checkStatus,
+            content,
+            registerDate
+        from
+            todolist_tb
+        where
+            registerDate like concat("%", #{registerDate}, "%")
+        order by
+            registerDate desc
+    </select>
+</mapper>
