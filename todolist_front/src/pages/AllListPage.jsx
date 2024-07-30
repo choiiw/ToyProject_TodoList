@@ -26,6 +26,20 @@ function AllListPage(props) {
         };
     }
 
+    const handleDeleteTodoListClick (listId) => {
+
+    }
+
+    const requestDeleteTodolist = async (listId) => {
+        let responseDate = null;
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/v1/todolist/${listId}`)
+        } catch(e) {
+            console.error(e)
+        }
+        return responseDate;
+    }
+
 
 
     return (
