@@ -91,7 +91,6 @@ function App() {
                     <div class="list">
                     <div class="sc-box">
                     <h2>전체 List</h2>
-                    <button onClick={handleSearchClick} class="sc">전체 조회</button>
                 </div>
                 <div >
                     <table>
@@ -125,7 +124,6 @@ function App() {
                     <div class="list">
                     <div class="sc-box">
             <h2>미완료 List</h2>
-            <button  class="sc">미완료 조회</button>
         </div>
         <div >
             <table>
@@ -161,7 +159,6 @@ function App() {
                     <div class="list">
                     <div class="sc-box">
                     <h2>완료 List</h2>
-                     <button  class="sc">완료 조회</button>
                 </div>
                 <div >
                     <table>

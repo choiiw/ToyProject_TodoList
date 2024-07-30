@@ -7,7 +7,6 @@ function CompletePage(props) {
         <div >
             <div class="sc-box">
                 <h2>완료 List</h2>
-                <button class="sc">완료 조회</button>
             </div>
             <div >
                 <table>

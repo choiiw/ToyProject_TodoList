@@ -6,7 +6,6 @@ function IncompletePage(props) {
         <div >
         <div class="sc-box">
             <h2>미완료 List</h2>
-            <button  class="sc">미완료 조회</button>
         </div>
         <div >
             <table>

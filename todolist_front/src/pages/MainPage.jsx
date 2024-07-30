@@ -12,6 +12,7 @@ function MainPage(props) {
             <div class="container">
                 <h1>todolist</h1>
                 <p class="input-box">
+                    <input type="date" />
                     <input type="text" placeholder='ID' />
                     <input type="password" placeholder='password' />
                     <button class="login-bt">확인</button>
