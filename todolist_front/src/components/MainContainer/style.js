@@ -34,7 +34,7 @@ export const container = css`
     }
 
     .login-bt {
-        margin-right: 200px;
+        margin-right:75px;
     }
 
     .list-container {
@@ -44,7 +44,7 @@ export const container = css`
         flex-direction: row;
         justify-content: center;
         box-sizing: border-box;
-        display: flex;
+
     }
 
     .list {
@@ -52,7 +52,7 @@ export const container = css`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        border: 1px solid #000000;       
+        border: 1px solid #dbdbdb;       
         margin-right: 20px;
         width: 500px;
         height: 650px;
@@ -63,7 +63,7 @@ export const container = css`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid #dbdbdb;
         width: 499px;
         height: 100px;
 
@@ -97,5 +97,12 @@ export const container = css`
     
     h2{
         margin-left: 30px ;
+    }
+    table th:nth-child(2){
+        width: 290px;
+    }
+
+    table th:nth-child(3){
+        width: 70px;
     }
 `;

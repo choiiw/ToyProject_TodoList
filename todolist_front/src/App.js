@@ -18,9 +18,9 @@ function App() {
             <MainContainer>
                 <Routes>
                   <Route path="/todolist" element={<MainPage />} />
-                  <Route path="/todolist/all" element={<AllListPage />} />
-                  <Route path="/todolist/comp" element={<CompletePage />} />
-                  <Route path="/todolist/incomp" element={<IncompletePage />} />
+                  <Route path="/todolist" element={<AllListPage />} />
+                  <Route path="/todolist" element={<CompletePage />} />
+                  <Route path="/todolist" element={<IncompletePage />} />
                 </Routes>
             </MainContainer>
 
