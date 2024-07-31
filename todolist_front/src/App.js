@@ -29,8 +29,9 @@ function App() {
         registerDate: "",
     });
         
-        const [ todoList, setTodoList ] = useState([]);
-        
+    const [ todoList, setTodoList ] = useState([]);
+    
+
 
       // 조회
 
@@ -97,6 +98,33 @@ function App() {
 
 
 // 삭제
+    const requestDeleteList = async (todoId) => {
+  
+        let responseData = null;
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/v1/todo/${todoId}`);
+            responseData = response.data;
+        } catch (e) {
+            console.error(e);
+        
+        }
+        return responseData;
+    }
+
+    const handleDeleteListClick = async (todoId) => {
+
+        if (window.confirm("삭제하시겠습니까?")) {
+            const deleteResult = await requestDeleteList(todoId);
+            if (deleteResult) {
+                await requestTodoList(); // 이 함수는 별도로 정의되어 있어야 합니다.
+                alert("삭제 완료");
+            } else {
+                alert("삭제 실패");
+            }
+        }
+    }
+
+
 
 // 수정 
 
@@ -191,8 +219,10 @@ function App() {
             <div >
             <div class="container">
                     <h1>todolist</h1>
+                    <div class="register-box">
                     <input type="text" name='content' onChange={handleRegisterInputChange} value={registerTodo.content}/>
                     <button onClick={handleRegisterSubmitClick}>생성</button>
+                    </div>
                 <p class="input-box">           
                     <input type="text" placeholder='ID'/>
                     <input type="password" placeholder='password'/>
@@ -220,11 +250,11 @@ function App() {
                            {
                                 todoList.map(todo =>
                                     <tr key={todo.todoId}>
-                                        <td><input type="checkbox" checked={!!todo.checkStatus}/></td>
+                                        <td><input type="checkbox" checked={!!todo.checkStatus} /></td>
                                         <td>{todo.content}</td>
                                         <td>{todo.registerDate}</td>
                                         <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
-                                        <td><button>삭제</button></td>
+                                        <td><button onClick={() => handleDeleteListClick(todo.todoId)}>삭제</button></td>
                                     </tr>
                      
                                 )    
