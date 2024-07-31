@@ -18,6 +18,10 @@ function App() {
         registerDate: "",
     })
         
+    const [ registerTodo, setRegisterTodo ] = useState({
+        content: "",
+    });
+
     const [ updateTodo, setUpdateTodo ] = useState({
         todoId: "",
         checkStatus: "",
@@ -65,6 +69,32 @@ function App() {
     }
 
 // 생성
+    const handleRegisterInputChange = (e) => {
+        setRegisterTodo(rt => {
+            return {
+                ...rt,
+                [e.target.name]: e.target.value
+            }
+        });
+    }
+
+    const handleRegisterSubmitClick = async () => {
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/todo", registerTodo );
+            if(response.status === 200) {
+                alert("등록");
+            } 
+                
+        } catch (e) {
+            console.error(e);
+            alert("등록실패");
+        }
+        setRegisterTodo({
+            content: ""
+        });
+    }
+
+
 
 // 삭제
 
@@ -161,6 +191,8 @@ function App() {
             <div >
             <div class="container">
                     <h1>todolist</h1>
+                    <input type="text" name='content' onChange={handleRegisterInputChange} value={registerTodo.content}/>
+                    <button onClick={handleRegisterSubmitClick}>생성</button>
                 <p class="input-box">           
                     <input type="text" placeholder='ID'/>
                     <input type="password" placeholder='password'/>

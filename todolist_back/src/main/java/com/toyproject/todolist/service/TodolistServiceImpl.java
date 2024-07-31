@@ -26,7 +26,7 @@ public class TodolistServiceImpl implements TodolistService {
 
     public int registerTodo(ReqRegisterInputDto reqDto) {
         Todo todo = Todo.builder()
-                .content(reqDto.getInput())
+                .content(reqDto.getContent())
                 .registerDate(reqDto.getRegisterDate())
                 .build();
 

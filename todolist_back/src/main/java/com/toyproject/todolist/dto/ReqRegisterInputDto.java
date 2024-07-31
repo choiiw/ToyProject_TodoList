@@ -8,6 +8,6 @@ import java.util.Date;
 
 @Data
 public class ReqRegisterInputDto {
-    private String input;
+    private String content;
     private String registerDate;
 }
