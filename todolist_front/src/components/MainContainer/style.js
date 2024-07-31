@@ -100,11 +100,11 @@ export const container = css`
     }
 
 
-    table th:nth-child(2){
+    table th:nth-of-type(2){
         width: 290px;
     }
 
-    table th:nth-child(3){
+    table th:nth-of-type(3){
         width: 70px;
     }
     .sc-box {

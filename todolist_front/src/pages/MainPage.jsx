@@ -36,7 +36,7 @@ function MainPage(props) {
 
             </div>
         </div>
-        
+
 
     );
 }
