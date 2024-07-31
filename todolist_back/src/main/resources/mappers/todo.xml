@@ -31,7 +31,6 @@
     <select id="findByTodoListAll"
             parameterType="String"
             resultType="com.toyproject.todolist.entity.Todo">
-
         select
             todoId,
             checkStatus,

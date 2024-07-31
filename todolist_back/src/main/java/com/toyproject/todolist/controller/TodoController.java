@@ -24,6 +24,7 @@ public class TodoController {
 
     @GetMapping("/todolist") // 전체 조회
     public ResponseEntity<?> getApi(@RequestParam(required = false) String registerDate) {
+        log.info("{}", registerDate);
         return ResponseEntity.ok().body(todolistService.getTodoList(registerDate));
     }
 
