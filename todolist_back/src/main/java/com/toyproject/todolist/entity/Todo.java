@@ -1,6 +1,7 @@
 package com.toyproject.todolist.entity;
 
 import com.toyproject.todolist.dto.RespGetTodoDto;
+import com.toyproject.todolist.dto.RespGetTodoListDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,8 +21,8 @@ public class Todo {
     private String content;
     private String registerDate;
 
-    public RespGetTodoDto toRespGetTodoDto() {
-        return RespGetTodoDto.builder()
+    public RespGetTodoListDto toRespGetTodoDto() {
+        return RespGetTodoListDto.builder()
                 .todoId(todoId)
                 .checkStatus(checkStatus)
                 .content(content)
