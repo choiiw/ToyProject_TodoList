@@ -44,4 +44,18 @@
         order by
             registerDate desc
     </select>
+
+    <select id="findByTodoId"
+            resultType="com.toyproject.todolist.entity.Todo">
+        select
+            todoId,
+            checkStatus,
+            content,
+            registerDate
+        from
+            todolist_tb
+        where
+            todoId = #{todoId}
+
+    </select>
 </mapper>

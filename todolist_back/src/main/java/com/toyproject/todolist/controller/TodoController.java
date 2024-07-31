@@ -1,6 +1,5 @@
 package com.toyproject.todolist.controller;
 
-import com.toyproject.todolist.dto.ReqGetTodoListDto;
 import com.toyproject.todolist.dto.ReqRegisterInputDto;
 import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
 import com.toyproject.todolist.service.TodolistService;
@@ -26,6 +25,11 @@ public class TodoController {
     @GetMapping("/todolist") // 전체 조회
     public ResponseEntity<?> getApi(@RequestParam(required = false) String registerDate) {
         return ResponseEntity.ok().body(todolistService.getTodoList(registerDate));
+    }
+
+    @GetMapping("/todo/{todoId}")
+    public ResponseEntity<?> updateGetApi(@PathVariable int todoId) {
+        return ResponseEntity.ok().body(todolistService.getTodo(todoId));
     }
 
     @PutMapping("/todo/{todoId}") // 수정
