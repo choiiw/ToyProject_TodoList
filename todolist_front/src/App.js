@@ -32,7 +32,6 @@ function App() {
     const [ todoList, setTodoList ] = useState([]);
     
 
-
       // 조회
 
     const requestTodoList = async () => {
@@ -171,7 +170,6 @@ function App() {
             };
         });
     }
-
 
   return (
     <>
