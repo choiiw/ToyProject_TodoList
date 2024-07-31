@@ -98,6 +98,8 @@ export const container = css`
     h2{
         margin-left: 30px ;
     }
+
+
     table th:nth-child(2){
         width: 290px;
     }
@@ -126,5 +128,13 @@ export const container = css`
         &:active{
             background-color: #dbdbdb;
         }
+    }
+
+    .register-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        
     }
 `;

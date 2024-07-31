@@ -8,7 +8,7 @@
     <insert id="save" parameterType="com.toyproject.todolist.entity.Todo">
         insert into todolist_tb
         values
-            (0, 0, #{content}, #{registerDate})
+            (0, 0, #{content}, now())
     </insert>
     <update id="update" parameterType="com.toyproject.todolist.entity.Todo">
         update todolist_tb
@@ -43,5 +43,19 @@
             registerDate like concat("%", #{registerDate}, "%")
         order by
             registerDate desc
+    </select>
+
+    <select id="findByTodoId"
+            resultType="com.toyproject.todolist.entity.Todo">
+        select
+            todoId,
+            checkStatus,
+            content,
+            registerDate
+        from
+            todolist_tb
+        where
+            todoId = #{todoId}
+
     </select>
 </mapper>
