@@ -200,14 +200,30 @@ function App() {
         });
     }
 
-    const handleCheckedChange = (todoId) => {
-        const updateTodo = todoList.map(todo =>
-            todo.todoId === todoId
-                ? { ...todo, checkStatus: !todo.checkStatus }
-                : todo
-        );
-        setTodoList(updateTodo);
-    }
+    // const handleCheckedChange = (todoId) => {
+    //     const updateTodo = todoList.map(todo =>
+    //         todo.todoId === todoId
+    //             ? { ...todo, checkStatus: !todo.checkStatus }
+    //             : todo
+    //     );
+    //     setTodoList(updateTodo);
+    // }
+
+        // 체크박스 상태 변경
+        const handleCheckedChange = async (todoId) => {
+            const todo = todoList.find(todo => todo.todoId === todoId);
+            const updatedTodo = {
+                ...todo,
+                checkStatus: todo.checkStatus === 1 ? 0 : 1  // checkStatus를 1로 변a경
+            };
+    
+            try {
+                await axios.put(`http://localhost:8080/api/v1/todo/${todoId}`, updatedTodo);
+                setTodoList(todoList.map(t => t.todoId === todoId ? updatedTodo : t));
+            } catch (e) {
+                console.error(e);
+            }
+        };
 
     //로그인
     const [ todoLogin, setTodoLogin ] = useState({
