@@ -6,6 +6,7 @@ import { reset } from './styles/global';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
+import { logDOM } from '@testing-library/react';
 ReactModal.setAppElement("#root");
 /** @JsxImportSource @emotion/react */
 
@@ -194,6 +195,38 @@ function App() {
         setTodoList(updateTodo);
     }
 
+    //로그인
+    const [ todoLogin, setTodoLogin ] = useState({
+        username: "",
+        password: ""
+    });
+
+    const [ userInput, setUserInput ] = useState({...todoLogin});
+
+    const handleLoginInputChange = (e) => {
+        setUserInput(userInfo => {
+            return {
+                ...userInfo,
+                [e.target.name]: e.target.value
+            };
+        });
+    }
+
+    const handleLoginClick = async () => {
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/todo/login", todoLogin);
+            setTodoLogin(response.data);
+            alert(todoLogin.username + "님 환영합니다.");
+        }catch(e) {
+            console.error(e)
+            alert("회원 정보를 확인하세요.")
+        }
+        setTodoList({
+            username:"",
+            password:""
+        })
+    }
+
         return (
 
             <>
@@ -241,9 +274,9 @@ function App() {
                             </div>
                             <p className="input-box">
                                 <input type='month' name='registerDate' onChange={handleInputChange} />
-                                <input type="text" placeholder='ID' />
-                                <input type="password" placeholder='password' />
-                                <button className="login-bt">확인</button>
+                                <input type="text" placeholder='ID' id='username' onChange={handleLoginInputChange} value={todoLogin.username}/>
+                                <input type="password" placeholder='password' onChange={handleLoginInputChange} value={todoLogin.password}/>
+                                <button className="login-bt" onClick={handleLoginClick}>확인</button>
                             </p>
 
                             <div className="list-container">
