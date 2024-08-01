@@ -46,6 +46,7 @@ public class TodolistServiceImpl implements TodolistService {
     @Override
     public RespGetTodoDto getTodo(int todoId) {
             Todo todo = todoMapper.findByTodoId(todoId);
+
             return RespGetTodoDto.builder()
                     .todoId(todo.getTodoId())
                     .checkStatus(todo.getCheckStatus())
