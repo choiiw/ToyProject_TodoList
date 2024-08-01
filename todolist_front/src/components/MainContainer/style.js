@@ -99,13 +99,16 @@ export const container = css`
         margin-left: 30px ;
     }
 
+    table th:nth-of-type(1){
+        width: 50px;
+    }
 
     table th:nth-of-type(2){
-        width: 290px;
+        width: 250px;
     }
 
     table th:nth-of-type(3){
-        width: 70px;
+        width: 90px;
     }
     .sc-box {
         
@@ -135,6 +138,12 @@ export const container = css`
         justify-content: center;
         align-items: center;
         box-sizing: border-box;
-        
+        height: 100%;
     }
+
+    .submit-box {
+        width: 500px;
+    }
+
+    
 `;

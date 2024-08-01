@@ -4,13 +4,14 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.toyproject.todolist.repository.UserMapper">
-    <insert id="save" parameterType="com.toyproject.todolist.entity.User">
+
+    <select id="getUserById" resultType="com.toyproject.todolist.entity.User">
         select
-            user
+            *
         from
             user_tb
         where
-
-    </insert> <!-- productmapper우클릭 + 경로복사 맨마지막꺼-->
-
+            userName = #{userName}
+            and password = #{password}
+    </select>
 </mapper>

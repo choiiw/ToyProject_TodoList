@@ -2,11 +2,17 @@ package com.toyproject.todolist.controller;
 
 import com.toyproject.todolist.dto.ReqRegisterInputDto;
 import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
+import com.toyproject.todolist.dto.ReqUserDto;
+import com.toyproject.todolist.entity.User;
+import com.toyproject.todolist.service.UserService;
 import com.toyproject.todolist.service.TodolistService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @CrossOrigin
@@ -16,6 +22,9 @@ public class TodoController {
 
     @Autowired
     private TodolistService todolistService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/todo") // 생성
     public ResponseEntity<?> registerApi(@RequestBody ReqRegisterInputDto reqDto) {
@@ -42,4 +51,18 @@ public class TodoController {
     public ResponseEntity<?> deleteApi(@PathVariable int todoId) {
         return ResponseEntity.ok().body(todolistService.deleteTodo(todoId));
     }
+
+//    @PostMapping("/todo/login")
+//    public ResponseEntity<?> getAuth(@RequestBody ReqUserDto reqUserDto, HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//
+//        // `session.setAttribute("userId", );
+//        Object userId = session.getAttribute("userId");
+//
+//        if(userId == null) {
+//            return ResponseEntity.badRequest().body(0);
+//        } else
+//            return ResponseEntity.ok().body(userId);
+//    }
+
 }
