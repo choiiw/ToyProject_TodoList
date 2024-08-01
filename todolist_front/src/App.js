@@ -185,171 +185,180 @@ function App() {
         });
     }
 
-    return (
+    const handleCheckedChange = (todoId) => {
+        const updateTodo = todoList.map(todo =>
+            todo.todoId === todoId
+                ? { ...todo, checkStatus: !todo.checkStatus }
+                : todo
+        );
+        setTodoList(updateTodo);
+    }
 
-        <>
-            <Global css={reset} />
+        return (
 
-            <ReactModal
-                style={{
-                    content: {
-                        boxSizing: "border-box",
-                        transform: "translate(-50%, -50%)",
-                        top: "50%",
-                        left: "50%",
-                        padding: "20px",
-                        width: "800px",
-                        height: "400px",
-                        backgroundColor: "#fafafa",
+            <>
+                <Global css={reset} />
 
-                    }
-                }}
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}>
-                <div css={css`
+                <ReactModal
+                    style={{
+                        content: {
+                            boxSizing: "border-box",
+                            transform: "translate(-50%, -50%)",
+                            top: "50%",
+                            left: "50%",
+                            padding: "20px",
+                            width: "800px",
+                            height: "400px",
+                            backgroundColor: "#fafafa",
+
+                        }
+                    }}
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}>
+                    <div css={css`
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
                 height: 100%;
             `}>
-                    <h2>todo 정보 수정</h2>
-                    <input type="text" name="content" placeholder='오늘 할 일' onChange={handleUpdateInputChange} value={updateTodo.content} />
-                    <input type="date" name="registerDate" onChange={handleUpdateInputChange} value={updateTodo.registerDate} />
-                    <div>
-                        <button onClick={handleUpdateSubmitClick}>확인</button>
-                        <button onClick={() => closeModal()}>취소</button>
-                    </div>
-                </div>
-            </ReactModal>
-            <MainLayout>
-                <MainContainer>
-                    <div className="container">
-                        <h1>todolist</h1>
-                        <div class="register-box">
-                            <input type="text" name='content' onChange={handleRegisterInputChange} value={registerTodo.content} />
-                            <button onClick={handleRegisterSubmitClick}>생성</button>
+                        <h2>todo 정보 수정</h2>
+                        <input type="text" name="content" placeholder='오늘 할 일' onChange={handleUpdateInputChange} value={updateTodo.content} />
+                        <input type="date" name="registerDate" onChange={handleUpdateInputChange} value={updateTodo.registerDate} />
+                        <div>
+                            <button onClick={handleUpdateSubmitClick}>확인</button>
+                            <button onClick={() => closeModal()}>취소</button>
                         </div>
-                        <p className="input-box">
-                            <input type='month' name='registerDate' onChange={handleInputChange} />
-                            <input type="text" placeholder='ID' />
-                            <input type="password" placeholder='password' />
-                            <button className="login-bt">확인</button>
-                        </p>
-
-                        <div className="list-container">
-                            <div className="list">
-                                <div className="sc-box">
-                                    <h2>전체 List</h2>
-                                </div>
-                                <div >
-                                    <table>
-                                        <thead>
-                                            <tr >
-                                                <th>선택</th>
-                                                <th>내용</th>
-                                                <th>날짜</th>
-                                                <th>수정</th>
-                                                <th>삭제</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                todoList.map(todo =>
-                                                    <tr key={todo.todoId}>
-                                                        <td><input type="checkbox" checked={!!todo.checkStatus} /></td>
-                                                        <td>{todo.content}</td>
-                                                        <td>{todo.registerDate}</td>
-                                                        <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
-                                                        <td><button onClick={() => handleDeleteListClick(todo.todoId)}>삭제</button></td>
-                                                    </tr>
-
-                                                )
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                    </div>
+                </ReactModal>
+                <MainLayout>
+                    <MainContainer>
+                        <div className="container">
+                            <h1>todolist</h1>
+                            <div class="register-box">
+                                <input type="text" name='content' onChange={handleRegisterInputChange} value={registerTodo.content} />
+                                <button onClick={handleRegisterSubmitClick}>생성</button>
                             </div>
-                            <div className="list">
-                                <div className="sc-box">
-                                    <h2>미완료 List</h2>
+                            <p className="input-box">
+                                <input type='month' name='registerDate' onChange={handleInputChange} />
+                                <input type="text" placeholder='ID' />
+                                <input type="password" placeholder='password' />
+                                <button className="login-bt">확인</button>
+                            </p>
+
+                            <div className="list-container">
+                                <div className="list">
+                                    <div className="sc-box">
+                                        <h2>전체 List</h2>
+                                    </div>
+                                    <div >
+                                        <table>
+                                            <thead>
+                                                <tr >
+                                                    <th>선택</th>
+                                                    <th>내용</th>
+                                                    <th>날짜</th>
+                                                    <th>수정</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    todoList.map(todo =>
+                                                        <tr key={todo.todoId}>
+                                                            <td><input type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} value={todo.checkStatus} /></td>
+                                                            <td>{todo.content}</td>
+                                                            <td>{todo.registerDate}</td>
+                                                            <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
+                                                            <td><button onClick={() => handleDeleteListClick(todo.todoId)}>삭제</button></td>
+                                                        </tr>
+
+                                                    )
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
-                                <div >
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>선택</th>
-                                                <th>내용</th>
-                                                <th>날짜</th>
-                                                <th>수정</th>
-                                                <th>삭제</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <div className="list">
+                                    <div className="sc-box">
+                                        <h2>미완료 List</h2>
+                                    </div>
+                                    <div >
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>선택</th>
+                                                    <th>내용</th>
+                                                    <th>날짜</th>
+                                                    <th>수정</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            {
-                                                todoList.filter(todo => !todo.checkStatus).map(todo =>
-                                                    <tr key={todo.todoId}>
-                                                        <td><input type="checkbox" checked={!!todo.checkStatus} /></td>
-                                                        <td>{todo.content}</td>
-                                                        <td>{todo.registerDate}</td>
-                                                        <td><button>수정</button></td>
-                                                        <td><button>삭제</button></td>
-                                                    </tr>
+                                                {
+                                                    todoList.filter(todo => !todo.checkStatus).map(todo =>
+                                                        <tr key={todo.todoId}>
+                                                            <td><input type="checkbox" checked={todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
+                                                            <td>{todo.content}</td>
+                                                            <td>{todo.registerDate}</td>
+                                                            <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
+                                                            <td><button onClick={() => handleDeleteListClick(todo.todoId)}>삭제</button></td>
+                                                        </tr>
 
-                                                )
-                                            }
+                                                    )
+                                                }
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
+                                <div className="list">
+                                    <div className="sc-box">
+                                        <h2>완료 List</h2>
+                                    </div>
+                                    <div >
+                                        <table>
+                                            <thead>
+                                                <tr >
+                                                    <th>선택</th>
+                                                    <th>내용</th>
+                                                    <th>날짜</th>
+                                                    <th>수정</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                            </div>
-                            <div className="list">
-                                <div className="sc-box">
-                                    <h2>완료 List</h2>
-                                </div>
-                                <div >
-                                    <table>
-                                        <thead>
-                                            <tr >
-                                                <th>선택</th>
-                                                <th>내용</th>
-                                                <th>날짜</th>
-                                                <th>수정</th>
-                                                <th>삭제</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                                {
+                                                    todoList.filter(todo => !!todo.checkStatus).map(todo =>
+                                                        <tr key={todo.todoId}>
+                                                            <td><input type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
+                                                            <td>{todo.content}</td>
+                                                            <td>{todo.registerDate}</td>
+                                                            <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
+                                                            <td><button onClick={() => handleDeleteListClick(todo.todoId)}>삭제</button></td>
+                                                        </tr>
 
-                                            {
-                                                todoList.filter(todo => !!todo.checkStatus).map(todo =>
-                                                    <tr key={todo.todoId}>
-                                                        <td><input type="checkbox" checked={!!todo.checkStatus} /></td>
-                                                        <td>{todo.content}</td>
-                                                        <td>{todo.registerDate}</td>
-                                                        <td><button>수정</button></td>
-                                                        <td><button>삭제</button></td>
-                                                    </tr>
+                                                    )
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                                )
-                                            }
-                                        </tbody>
-                                    </table>
                                 </div>
 
                             </div>
 
                         </div>
 
-                    </div>
+                    </MainContainer>
 
-                </MainContainer>
+                </MainLayout>
+            </>
+        );
+    }
 
-            </MainLayout>
-        </>
-    );
-}
-
-export default App;
+    export default App;
