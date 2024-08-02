@@ -297,7 +297,7 @@ function App() {
                 <MainLayout>
                     <MainContainer>
                         <div className="container">
-                            <h1>todolist</h1>
+                            <h1 className='listtitle'>todolist</h1>
                             <div class="register-box">
                                 <input type="text" className='submit-box' name='content' onChange={handleRegisterInputChange} onKeyDown={handleEnter} value={registerTodo.content} />
                             </div>

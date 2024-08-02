@@ -7,7 +7,6 @@ export const container = css`
     flex-direction: column;
     padding: 20px;
 
-
     .container {
         position: relative;
         display: flex;
@@ -16,6 +15,7 @@ export const container = css`
         width: 100%;
         height: 100px;
     }
+
     .input-box {
         position: relative;
         box-sizing: border-box;
@@ -25,6 +25,11 @@ export const container = css`
         display: flex;
         width: 100%;
         height: 70px;
+    }
+
+    .input-box input {
+        box-sizing: border-box;
+        border-radius: 5px;
     }
 
     h1 {
@@ -37,60 +42,12 @@ export const container = css`
         margin-right:75px;
     }
 
-    .list-container {
-        position: relative;
-        display: flex;
-        flex-grow: 1;
-        flex-direction: row;
-        justify-content: center;
-        box-sizing: border-box;
-
+    .listtitle {
+        font-family: 'EF_jejudoldam';
+        color: #2f4fbb;
+        font-size: 50px;
     }
 
-    .list {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        border: 1px solid #dbdbdb;       
-        margin-right: 20px;
-        width: 500px;
-        height: 650px;
-    }
-
-    .list-box {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        border-bottom: 1px solid #dbdbdb;
-        width: 499px;
-        height: 100px;
-
-    }
-
-    .chk-box {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-        box-sizing: border-box;
-        width: 50px;
-        height: 30px;
-    }
-    .chk {
-        margin-top: 10px;
-        margin-right: 15px ;
-    }
-
-    .button-box {
-        position: relative;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-    }
     .bb {
             margin-right: 10px;
         }
@@ -138,12 +95,74 @@ export const container = css`
         justify-content: center;
         align-items: center;
         box-sizing: border-box;
-        height: 100%;
     }
 
     .submit-box {
-        width: 500px;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        border-color: #2f4fbb;
+        margin: 30px;
+        width: 50%;
+        height: 50%;
     }
 
-    
+    .list-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        border-radius: 1px solid #dbdbdb;
+        width: 500px;
+        height: 100px;
+    }
+
+    .list-container {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .list {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        border: 1px solid #D6E0F0;
+        border-radius: 5px;
+        margin-right: 20px;
+        width: 500px;
+        height: 650px;
+    }
+
+    .list h2{
+        padding: 6px;
+        border-bottom: 4px solid #D6E0F0;
+        margin-left: 30px ;
+    }
+
+    .list thead {
+        padding:0;
+        margin: 24px;
+    }
+
+    .list tr {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        width: auto;
+        margin:8px;
+        padding: 6px;
+        border-bottom: 2px solid #D6E0F0;
+    }
+
+    button {
+    border: none;
+    background-color:#D6E0F0;
+    padding: 4px 6px;
+    margin-left: 12px;
+    }  
 `;
