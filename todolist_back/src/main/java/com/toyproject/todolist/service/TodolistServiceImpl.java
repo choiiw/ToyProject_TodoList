@@ -35,10 +35,10 @@ public class TodolistServiceImpl implements TodolistService {
 
 
     //조회
-    public List<RespGetTodoListDto> getTodoList(String registerDate) {
+    public List<RespGetTodoListDto> getTodoList(ReqGetTodoListDto reqGetTodoListDto ) {
         List<RespGetTodoListDto> respDtos = new ArrayList<>();
 
-        List<Todo> todos = todoMapper.findByTodoListAll(registerDate);
+        List<Todo> todos = todoMapper.findByTodoListAll(reqGetTodoListDto);
 
         return todos.stream().map(Todo::toRespGetTodoDto).collect(Collectors.toList());
     }

@@ -7,5 +7,6 @@ import com.toyproject.todolist.dto.RespUserDto;
 import java.util.List;
 
 public interface UserService {
-    RespUserDto login(ReqUserDto userDto);
+    int getUserId(String username);
+    List<RespUserDto> getTodoList(int userId);
 }

@@ -1,9 +1,9 @@
 package com.toyproject.todolist.controller;
 
+import com.toyproject.todolist.dto.ReqGetTodoListDto;
 import com.toyproject.todolist.dto.ReqRegisterInputDto;
 import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
 import com.toyproject.todolist.dto.ReqUserDto;
-import com.toyproject.todolist.entity.User;
 import com.toyproject.todolist.service.UserService;
 import com.toyproject.todolist.service.TodolistService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,9 +32,9 @@ public class TodoController {
     }
 
     @GetMapping("/todolist") // 전체 조회
-    public ResponseEntity<?> getApi(@RequestParam(required = false) String registerDate) {
-        log.info("{}", registerDate);
-        return ResponseEntity.ok().body(todolistService.getTodoList(registerDate));
+    public ResponseEntity<?> getApi(@RequestParam(required = false) ReqGetTodoListDto reqGetTodoListDto) {
+        log.info("{}", reqGetTodoListDto);
+        return ResponseEntity.ok().body(todolistService.getTodoList(reqGetTodoListDto));
     }
 
     @GetMapping("/todo/{todoId}")
@@ -52,17 +52,29 @@ public class TodoController {
         return ResponseEntity.ok().body(todolistService.deleteTodo(todoId));
     }
 
-//    @PostMapping("/todo/login")
-//    public ResponseEntity<?> getAuth(@RequestBody ReqUserDto reqUserDto, HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//
-//        // `session.setAttribute("userId", );
-//        Object userId = session.getAttribute("userId");
-//
-//        if(userId == null) {
-//            return ResponseEntity.badRequest().body(0);
-//        } else
-//            return ResponseEntity.ok().body(userId);
-//    }
+    @PostMapping("/todo/login")
+    public ResponseEntity<?> getAuth(@RequestBody ReqUserDto reqUserDto, HttpServletRequest request) {
+
+        int userId = userService.getUserId(reqUserDto.getUserName());
+
+        HttpSession session = request.getSession();
+        session.setAttribute("sessionUserId", userId);
+
+        Integer sessionUserId = (Integer) session.getAttribute("sessionUserId");
+
+        System.out.println("id:" + sessionUserId); // 받아옴
+
+        if(sessionUserId == null) {
+            return ResponseEntity.badRequest().body(0);
+        } else
+            return ResponseEntity.ok().body(sessionUserId);
+
+    }
+
+    @GetMapping("/todo/login/{userId}")
+    public ResponseEntity<?> getUserApi(@PathVariable int userId) {
+        log.info("{}", userId);
+        return ResponseEntity.ok().body(userService.getTodoList(userId));
+    }
 
 }

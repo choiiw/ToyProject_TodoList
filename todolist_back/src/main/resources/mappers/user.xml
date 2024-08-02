@@ -5,13 +5,20 @@
 
 <mapper namespace="com.toyproject.todolist.repository.UserMapper">
 
-    <select id="getUserById" resultType="com.toyproject.todolist.entity.User">
+    <select id="getUserById" parameterType="String" resultType="java.lang.Integer">
         select
-            *
+            user_tb.userId
         from
             user_tb
         where
             userName = #{userName}
-            and password = #{password}
+    </select>
+    <select id="getTodoListByUserId" parameterType="String" resultType="com.toyproject.todolist.dto.RespUserDto">
+        select
+            todolist_tb.*
+        from
+            user_tb join todolist_tb
+        on
+            user_tb.userId = todolist_tb.userId
     </select>
 </mapper>

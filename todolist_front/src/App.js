@@ -16,7 +16,7 @@ function App() {
     const [isModalOpen, setModalOpen] = useState(false);
 
     const [params, setParams] = useState({
-        registerDate: "",
+        registerDate: ""
     })
 
     const [registerTodo, setRegisterTodo] = useState({
@@ -43,16 +43,6 @@ function App() {
             console.error(e);
         };
     }
-
-    // const handleSearchClick = () => {
-
-    //     requestTodoList();
-
-    //     setParams({
-    //         registerDate: "",
-    //     })
-
-    // }
 
     useEffect(() => {
 
@@ -93,7 +83,6 @@ function App() {
         });
     }
 
-
     const handleRegisterSubmitClick = async () => {
         try {
             const response = await axios.post("http://localhost:8080/api/v1/todo", registerTodo);
@@ -118,9 +107,6 @@ function App() {
             handleRegisterSubmitClick();
         }
     }
-    
-
-
 
     // 삭제
     const requestDeleteList = async (todoId) => {
@@ -211,11 +197,13 @@ function App() {
 
     //로그인
     const [ todoLogin, setTodoLogin ] = useState({
+        userId: ""
+    });
+
+    const [ userInput, setUserInput ] = useState({
         userName: "",
         password: ""
     });
-
-    const [ userInput, setUserInput ] = useState({...todoLogin});
 
     const handleLoginInputChange = (e) => {
         setUserInput(userInput => {
@@ -224,21 +212,32 @@ function App() {
                 [e.target.name]: e.target.value
             };
         });
+
     }
 
     const handleLoginClick = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/todo/login", todoLogin);
+            const response = await axios.post("http://localhost:8080/api/v1/todo/login", userInput);
+            console.log(response.data); 
             setTodoLogin(response.data);
-            alert(todoLogin.userName + "님 환영합니다.");
+            alert(userInput.userName + "님 환영합니다.");
+            requestGetTodoByUserId();
         }catch(e) {
             console.error(e)
             alert("회원 정보를 확인하세요.")
         }
-        setTodoLogin({
-            userName:"",
-            password:""
-        })
+
+    }
+
+    const requestGetTodoByUserId = async (userId) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/v1/todo/login/${userId}`);
+            console.log(response);
+            setTodoList(response.data);
+
+        } catch (e) {
+            console.error(e);
+        }
     }
 
         return (
@@ -287,8 +286,8 @@ function App() {
                             </div>
                             <p className="input-box">
                                 <input type='month' name='registerDate' onChange={handleInputChange} />
-                                <input type="text" placeholder='ID' id='username' onChange={handleLoginInputChange} />
-                                <input type="password" placeholder='password' onChange={handleLoginInputChange} />
+                                <input type="text" placeholder='ID' name='userName' onChange={handleLoginInputChange} />
+                                <input type="password" name='password' placeholder='password' onChange={handleLoginInputChange} />
                                 <button className="login-bt" onClick={handleLoginClick}>확인</button>
                             </p>
 

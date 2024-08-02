@@ -7,6 +7,8 @@ import com.toyproject.todolist.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UerServiceImpl implements UserService{
 
@@ -14,15 +16,12 @@ public class UerServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public RespUserDto login(ReqUserDto reqUserDto) {
+    public int getUserId(String userName) {
+        return userMapper.getUserById(userName);
+    }
 
-        User user = userMapper.getUserById(reqUserDto);
-
-                return RespUserDto.builder()
-                .userName(user.getUserName())
-                .password(user.getPassword())
-                .build();
-
-
+    @Override
+    public List<RespUserDto> getTodoList(int userId) {
+        return userMapper.getTodoListByUserId(userId);
     }
 }

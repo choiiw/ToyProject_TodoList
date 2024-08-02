@@ -10,4 +10,5 @@ public class RespGetTodoListDto {
         private int checkStatus;
         private String content;
         private String registerDate;
+        private int userId;
 }
