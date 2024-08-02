@@ -16,6 +16,7 @@ export const container = css`
         width: 100%;
         height: 100px;
     }
+
     .input-box {
         position: relative;
         box-sizing: border-box;
@@ -37,7 +38,7 @@ export const container = css`
         margin-right:75px;
     }
 
-    .list-container {
+    /* .list-container {
         position: relative;
         display: flex;
         flex-grow: 1;
@@ -90,14 +91,60 @@ export const container = css`
         justify-content: flex-end;
         align-items: center;
 
+    } */
+
+    .list-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
     }
+
+    .list h2{
+    padding: 6px;
+    border-bottom: 4px solid #D6E0F0;
+    margin-left: 30px ;
+    }
+
+    .list thead {
+    padding:0;
+    margin: 24px;
+    }
+
+    .list tr {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: auto;
+    margin:8px;
+    padding: 6px;
+    border-bottom: 2px solid #D6E0F0;
+    }
+
+    button {
+    border: none;
+    background-color:#D6E0F0;
+    padding: 4px 6px;
+    margin-left: 12px;
+    }
+
     .bb {
-            margin-right: 10px;
-        }
-    
-    h2{
-        margin-left: 30px ;
+    margin-right: 10px;
     }
+    
+    .checkbox {
+    min-width: none;
+    min-height: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 50px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    text-align: center;
+    }
+
+    .checkbox 
 
     table th:nth-of-type(1){
         width: 50px;
@@ -110,10 +157,12 @@ export const container = css`
     table th:nth-of-type(3){
         width: 90px;
     }
-    .sc-box {
-        
-        display: flex;
 
+    .sc-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
     }
 
     .sc {
@@ -144,6 +193,4 @@ export const container = css`
     .submit-box {
         width: 500px;
     }
-
-    
 `;

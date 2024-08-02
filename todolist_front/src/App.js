@@ -311,7 +311,7 @@ function App() {
                                                 {
                                                     todoList.map(todo =>
                                                         <tr key={todo.todoId}>
-                                                            <td><input type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} value={todo.checkStatus} /></td>
+                                                            <td><input className='checkbox' type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} value={todo.checkStatus} /></td>
                                                             <td>{todo.content}</td>
                                                             <td>{todo.registerDate}</td>
                                                             <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
@@ -345,7 +345,7 @@ function App() {
                                                 {
                                                     todoList.filter(todo => !todo.checkStatus).map(todo =>
                                                         <tr key={todo.todoId}>
-                                                            <td><input type="checkbox" checked={todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
+                                                            <td><input className='checkbox' type="checkbox" checked={todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
                                                             <td>{todo.content}</td>
                                                             <td>{todo.registerDate}</td>
                                                             <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
@@ -380,7 +380,7 @@ function App() {
                                                 {
                                                     todoList.filter(todo => !!todo.checkStatus).map(todo =>
                                                         <tr key={todo.todoId}>
-                                                            <td><input type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
+                                                            <td><input className='checkbox' type="checkbox" checked={!!todo.checkStatus} onChange={() => handleCheckedChange(todo.todoId)} /></td>
                                                             <td>{todo.content}</td>
                                                             <td>{todo.registerDate}</td>
                                                             <td><button onClick={() => handleUpdateTodoClick(todo.todoId)}>수정</button></td>
