@@ -31,7 +31,7 @@ public class TodoController {
         return ResponseEntity.ok().body(todolistService.registerTodo(reqDto));
     }
 
-    @GetMapping("/todolist") // 전체 조회
+    @GetMapping("/todolist") // 날짜별 조회
     public ResponseEntity<?> getApi(@RequestParam(required = false) String registerDate) {
         log.info("{}", registerDate);
         return ResponseEntity.ok().body(todolistService.getTodoList(registerDate));
@@ -52,17 +52,5 @@ public class TodoController {
         return ResponseEntity.ok().body(todolistService.deleteTodo(todoId));
     }
 
-//    @PostMapping("/todo/login")
-//    public ResponseEntity<?> getAuth(@RequestBody ReqUserDto reqUserDto, HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//
-//        // `session.setAttribute("userId", );
-//        Object userId = session.getAttribute("userId");
-//
-//        if(userId == null) {
-//            return ResponseEntity.badRequest().body(0);
-//        } else
-//            return ResponseEntity.ok().body(userId);
-//    }
 
 }
