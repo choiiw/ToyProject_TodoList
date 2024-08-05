@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import { TfiPencilAlt } from "react-icons/tfi";
 import { VscTrash } from "react-icons/vsc";
+import * as s from './styles/style';
 ReactModal.setAppElement("#root");
 /** @JsxImportSource @emotion/react */
 
@@ -218,6 +219,7 @@ function App() {
                         padding: "20px",
                         width: "570px",
                         height: "750px",
+                        overflow: "hidden",
                         border: "3px solid #6a8ab1",
                         borderRadius: "10px",
                         backgroundColor: "#fafafa",
@@ -242,7 +244,9 @@ function App() {
                             fontSize: "60px",
                             textShadow: "1px 1px 0 #000000, 1px -1px 0 #000000, 1px -1px 0 #000000,-1px 1px 0 #000000",
                             alignItems: "center"
-                        }}>todo 내용 수정</h2>
+                        }}
+                        // css={s.h2}
+                        >todo 내용 수정</h2>
                     <div>
                         <input type="text" name="content" onChange={handleUpdateInputChange} value={updateTodo.content}
                         style={{
