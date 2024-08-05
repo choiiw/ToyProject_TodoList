@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F1F3F8;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: 'EF_jejudoldam';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
